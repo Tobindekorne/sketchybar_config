@@ -6,6 +6,7 @@
 
 
 source "$CONFIG_DIR/colors.sh" # Loads all defined colors
+source "$CONFIG_DIR/icons.sh" # Loads all defined icons
 # This is a demo config to showcase some of the most important commands.
 # It is meant to be changed and configured, as it is intentionally kept sparse.
 # For a (much) more advanced configuration example see my dotfiles:
@@ -76,50 +77,9 @@ default=(
 )
 sketchybar --default "${default[@]}"
 
-# aerospace integration
-# sketchybar --add event aerospace_workspace_change
-
-# for sid in $(aerospace list-workspaces --all); do
-#     sketchybar --add item space.$sid left \
-#         --subscribe space.$sid aerospace_workspace_change \
-#         --set space.$sid \
-#         background.color=0x44ffffff \
-#         background.corner_radius=5 \
-#         background.height=20 \
-#         background.drawing=off \
-#         label="$sid" \
-#         click_script="aerospace workspace $sid" \
-#         script="$CONFIG_DIR/plugins/aerospace.sh $sid"
-# done
-
-# for sid in $(aerospace list-workspaces --all); do
-#     sketchybar --add item space.$sid left \
-#         --subscribe space.$sid aerospace_workspace_change \
-#         --set space.$sid \
-#         background.color=0x44ffffff \
-#         background.corner_radius=5 \
-#         background.height=20 \
-#         background.drawing=off \
-#         label="$sid" \
-#         click_script="aerospace workspace $sid" \
-#         script="$CONFIG_DIR/plugins/aerospace.sh $sid"
-# done
-
-# # Separator between spaces, can be adjusted as needed
-# sketchybar --add item space_separator left \
-#            --set space_separator icon="􀆊" \
-#                                  icon.color=$ACCENT_COLOR \
-#                                  icon.padding_left=4 \
-#                                  label.drawing=off \
-#                                  background.drawing=off \
-#                                  script="$CONFIG_DIR/plugins/aerospace_windows.sh" \
-#            --subscribe space_separator aerospace_workspace_change
-
-
 # -- Left Side Items --
 source $ITEM_DIR/apple.sh
 source $ITEM_DIR/spaces.sh
-# source $ITEM_DIR/aerospaces.sh
 source $ITEM_DIR/front_app.sh
 
 # -- Right Side Of Notch Items --

@@ -6,20 +6,9 @@
 
 # source "$CONFIG_DIR/colors.sh" # Loads all defined colors
 
-# if [ $SELECTED = true ]; then
-#   sketchybar --set $NAME background.drawing=on \
-#                          background.color=$ACCENT_COLOR \
-#                          label.color=$BAR_COLOR \
-#                          icon.color=$BAR_COLOR
-# else
-#   sketchybar --set $NAME background.drawing=off \
-#                          label.color=$ACCENT_COLOR \
-#                          icon.color=$ACCENT_COLOR
-# fi
-#
 update() {
-  # 처음 시작에만 작동하기 위해서
-  # 현재 forced, space_change 이벤트가 동시에 발생하고 있다.
+  # To work only on initial startup
+  # Currently forced and space_change events are occurring simultaneously.
   if [ "$SENDER" = "space_change" ]; then
     #echo space.sh $'FOCUSED_WORKSPACE': $FOCUSED_WORKSPACE, $'SELECTED': $SELECTED, NAME: $NAME, SENDER: $SENDER, INFO: $INFO  >> ~/aaaa
     #echo $(aerospace list-workspaces --focused) >> ~/aaaa
@@ -29,22 +18,14 @@ update() {
     if [ "$SELECTED" = "true" ]; then
       COLOR=$ACCENT_COLOR
     fi
-    # sketchybar --set $NAME icon.highlight=$SELECTED \
-    #                        label.highlight=$SELECTED \
-    #                        background.border_color=$COLOR
+
+    # This sets the style for the currently selected space in the list of spaces
     sketchybar --set space.$(aerospace list-workspaces --focused) icon.highlight=true \
                       label.highlight=true \
-                      label.color=$BLACK \
-                      icon.color=$BLACK \
+                      label.color=$ACCENT_COLOR \
+                      icon.color=$ACCENT_COLOR \
                       background.border_color=$ACCENT_COLOR \
                       background.color=$BLACK
-    
-    # sketchybar --set space.$(aerospace list-workspaces --focused) icon.highlight=true \
-    #                   label.highlight=true \
-    #                   label.color=$ACCENT_COLOR \
-    #                   icon.color=$ACCENT_COLOR \
-    #                   background.border_color=$ACCENT_COLOR \
-    #                   background.color=$CURRENT_ITEM_COLOR
   fi
 }
 
@@ -54,7 +35,6 @@ set_space_label() {
 
 mouse_clicked() {
   if [ "$BUTTON" = "right" ]; then
-    # yabai -m space --destroy $SID
     echo ''
   else
     if [ "$MODIFIER" = "shift" ]; then
@@ -67,7 +47,6 @@ mouse_clicked() {
         fi
       fi
     else
-      #yabai -m space --focus $SID 2>/dev/null
       #echo space.sh BUTTON: $BUTTON, $'SELECTED': $SELECTED, MODIFIER: $MODIFIER, NAME: $NAME, SENDER: $SENDER, INFO: $INFO, TEST: ${NAME#*.}, ${NAME:6} >> ~/aaaa
       aerospace workspace ${NAME#*.}
     fi

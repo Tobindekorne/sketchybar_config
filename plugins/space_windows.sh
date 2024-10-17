@@ -29,7 +29,7 @@ reload_workspace_icon() {
     icon_strip=" —"
   fi
 
-  sketchybar --animate sin 10 --set space.$@ label="$icon_strip" label.color=$ACCENT_COLOR
+  sketchybar --animate sin 10 --set space.$@ label="$icon_strip" label.highlight_color=$ACCENT_COLOR
 }
 
 if [ "$SENDER" = "aerospace_workspace_change" ]; then
@@ -39,7 +39,7 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
 
   # sketchybar --animate sin 10 --set space.$space label="$icon_strip"
 
-  # current workspace space border color
+  # current workspace space styles
   sketchybar --set space.$AEROSPACE_FOCUSED_WORKSPACE icon.highlight=true \
                          label.highlight=true \
                          label.color=$ACCENT_COLOR \
@@ -47,7 +47,7 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
                          background.border_color=$ACCENT_COLOR \
                          background.color=$CURRENT_ITEM_COLOR
 
-  # prev workspace space border color
+  # prev workspace space styles
   sketchybar --set space.$AEROSPACE_PREV_WORKSPACE icon.highlight=false \
                          label.highlight=false \
                          label.color=$GREY \
@@ -58,7 +58,7 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
   # if [ "$AEROSPACE_FOCUSED_WORKSPACE" -gt 3 ]; then
   #   sketchybar --animate sin 10 --set space.$AEROSPACE_FOCUSED_WORKSPACE display=1
   # fi
-  ## focused 된 모니터에 space 상태 보이게 설정
+  ## Set the space status to visible on the focused monitor
   for i in $AEROSAPCE_WORKSPACE_FOCUSED_MONITOR; do
     sketchybar --set space.$i display=$AEROSPACE_FOCUSED_MONITOR
   done

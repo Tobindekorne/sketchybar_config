@@ -1,6 +1,7 @@
+source "$CONFIG_DIR/colors.sh" # Loads all defined colors
 sketchybar --set $NAME \
   label="Loading..." \
-  icon.color=0xff5edaff
+  icon.color=$ACCENT_COLOR
 
 # fetch weather data
 LOCATION="San Diego"
@@ -18,7 +19,6 @@ if [ -z $WEATHER_JSON ]; then
 fi
 
 TEMPERATURE=$(echo $WEATHER_JSON | jq '.current_condition[0].temp_F' | tr -d '"')
-#WEATHER_DESCRIPTION=$(echo $WEATHER_JSON | jq '.current_condition[0].weatherDesc[0].value' | tr -d '"' | sed 's/\(.\{16\}\).*/\1.../')
 WEATHER_DESCRIPTION=$(echo $WEATHER_JSON | jq '.current_condition[0].weatherDesc[0].value' | tr -d '"' | sed 's/\(.\{16\}\).*/\1.../')
 
 sketchybar --set $NAME \
