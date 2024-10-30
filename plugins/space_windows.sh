@@ -29,7 +29,7 @@ reload_workspace_icon() {
     icon_strip=" —"
   fi
 
-  sketchybar --animate sin 10 --set space.$@ label="$icon_strip" label.highlight_color=$ACCENT_COLOR
+  # sketchybar --animate sin 10 --set space.$@ label="$icon_strip"
 }
 
 if [ "$SENDER" = "aerospace_workspace_change" ]; then
@@ -45,24 +45,22 @@ if [ "$SENDER" = "aerospace_workspace_change" ]; then
                          label.color=$ACCENT_COLOR \
                          icon.color=$ACCENT_COLOR \
                          background.border_color=$ACCENT_COLOR \
-                         background.color=$CURRENT_ITEM_COLOR
+                         background.color=$FOCUSED_SPACE_BG_COLOR
 
   # prev workspace space styles
   sketchybar --set space.$AEROSPACE_PREV_WORKSPACE icon.highlight=false \
                          label.highlight=false \
-                         label.color=$GREY \
-                         icon.color=$GREY \
-                         background.border_color=$BACKGROUND_2 \
-                         background.color=$BACKGROUND_2
+                         label.color=$BLURRED_SPACE_FG_COLOR \
+                         icon.color=$BLURRED_SPACE_FG_COLOR  \
+                         background.border_color=$BLURRED_SPACE_BG_COLOR \
+                         background.color=$BLURRED_SPACE_BG_COLOR 
 
-  # if [ "$AEROSPACE_FOCUSED_WORKSPACE" -gt 3 ]; then
-  #   sketchybar --animate sin 10 --set space.$AEROSPACE_FOCUSED_WORKSPACE display=1
-  # fi
   ## Set the space status to visible on the focused monitor
   for i in $AEROSAPCE_WORKSPACE_FOCUSED_MONITOR; do
     sketchybar --set space.$i display=$AEROSPACE_FOCUSED_MONITOR
   done
 
+  # Hide any empty workspaces
   for i in $AEROSPACE_EMPTY_WORKESPACE; do
     sketchybar --set space.$i display=0
   done

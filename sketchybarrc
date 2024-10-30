@@ -57,8 +57,8 @@ default=(
   icon.font="$FONT:Semibold:14.0"
   # label.font="Hack Nerd Font:Bold:14.0"
   label.font="$FONT:Semibold:15.0"
-  icon.color=$WHITE
-  label.color=$WHITE
+  icon.color=$ITEM_FG_COLOR
+  label.color=$ITEM_FG_COLOR
   icon.padding_left=10
   icon.padding_right=4
   label.padding_left=4
@@ -89,13 +89,14 @@ source $ITEM_DIR/media.sh
 source $ITEM_DIR/calendar.sh
 source $ITEM_DIR/volume.sh
 # source $ITEM_DIR/battery.sh # uncomment this if on a laptop
+source $ITEM_DIR/wifi.sh
 source $ITEM_DIR/cpu.sh
 source $ITEM_DIR/vpn.sh
 source $ITEM_DIR/mic.sh
 source $ITEM_DIR/reminders.sh
 source $ITEM_DIR/weather.sh
 
-sketchybar --hotload on
+sketchybar --hotload off
 
 ##### Finalizing Setup #####
 ##### Force all scripts to run the first time (never do this in a script) #####

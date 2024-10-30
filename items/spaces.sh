@@ -63,7 +63,7 @@ space_creator=(
   display=active
   script="$PLUGIN_DIR/space_windows.sh"
   # script="$PLUGIN_DIR/aerospace.sh"
-  icon.color=$WHITE
+  # icon.color=$WHITE
 )
 
 sketchybar --add item space_creator left               \
